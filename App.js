@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+  import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
@@ -7,6 +7,9 @@ import UpdateTemp from "./src/components/UpdateTemp";
 
 export default function App() {
   const [tela, setTela] = useState("home");
+  
+  // O estado fica no App para não ser destruído ao trocar de tela
+  const [historico, setHistorico] = useState([]);
 
   return (
     <View style={styles.container}>
@@ -14,7 +17,7 @@ export default function App() {
 
       {tela === "home" ? (
         <>
-          <HomeScreen />
+          <HomeScreen historico={historico} setHistorico={setHistorico} />
 
           <TouchableOpacity
             style={styles.botao}
@@ -35,21 +38,19 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
-
   botao: {
-    backgroundColor: "#3498DB",
-    paddingVertical: 14,
-    paddingHorizontal: 25,
+    backgroundColor: '#3498db',
+    padding: 15,
+    margin: 20,
     borderRadius: 8,
-    alignSelf: "center",
-    marginBottom: 30,
+    alignItems: 'center',
+    marginBottom: 40,
   },
-
   textoBotao: {
-    color: "#fff",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 16,
-    fontWeight: "bold",
-  },
+  }
 });
